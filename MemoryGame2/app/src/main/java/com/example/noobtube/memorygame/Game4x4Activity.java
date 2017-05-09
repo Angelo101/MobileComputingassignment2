@@ -98,6 +98,7 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
             if(clickCount == 8){ // if all pairs are found
                 finalCount = finish;
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                // Adds score to db
                 saveScore(finalCount);
                 alert.setMessage("You completed the game in" + finish)
                         .setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
