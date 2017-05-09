@@ -1,0 +1,59 @@
+package com.example.noobtube.memorygame;
+
+import android.media.MediaPlayer;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class SettingsActivity extends AppCompatActivity {
+
+    public Button off;
+    public Button on;
+    public boolean music = false;
+
+
+    @Override
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+        on = (Button) findViewById(R.id.on);
+        off = (Button) findViewById(R.id.off);
+        off.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+             music = false;
+             music();
+            }
+        });
+
+        on.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                music = true;
+                music();
+
+//                mediaPlayer.setLooping(true);
+            }
+        });
+
+
+
+
+    }
+    public boolean music(){
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.thinking);
+        if(music == true){
+            mediaPlayer.start();
+        }
+        else{
+            music = false;
+
+            mediaPlayer.pause();
+
+        }
+        return music;
+    }
+}
