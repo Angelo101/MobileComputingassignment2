@@ -109,6 +109,7 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
                         })
                         .create();
                 alert.show();
+                // Open scores page
                 startActivity(new Intent(this, ViewListContents.class));
             }
             selectedButton1.setMatched(true);
