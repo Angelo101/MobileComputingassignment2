@@ -20,6 +20,14 @@
         android:padding="15dp"
         android:layout_marginBottom="70dp"
         tools:text="Wlecome" />
+    <TextView
+        android:id="@+id/text_view"
+        android:scrollbars="vertical"
+        android:maxLines="1000"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9" />
+
 
     <Button
         android:text="@string/menu_option_PLAY"
@@ -42,4 +50,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:id="@+id/scores" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:id="@+id/post"
+        android:text="Post to twitter" />
 </LinearLayout>
