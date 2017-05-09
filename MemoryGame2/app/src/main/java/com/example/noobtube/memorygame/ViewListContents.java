@@ -25,16 +25,16 @@ public class ViewListContents extends AppCompatActivity {
 
         ListView listView = (ListView)findViewById(R.id.listView);
         myDB = new DatabaseHelper(this);
-        ArrayList<Integer> theList = new ArrayList<>();
+        ArrayList<String> theList = new ArrayList<>();
         Cursor data = myDB.getListContents();
         if(data.getCount() == 0){
             Toast.makeText(this ,"No recorded scores yet!", Toast.LENGTH_SHORT).show();
         }else{
             while(data.moveToNext()){
-                theList.add(1);
-                ListAdapter listAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, theList);
-                listView.setAdapter(listAdapter);
+                theList.add(data.getString(1));
             }
+            ListAdapter listAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, theList);
+            listView.setAdapter(listAdapter);
         }
 
     }

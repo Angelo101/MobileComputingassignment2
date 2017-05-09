@@ -23,9 +23,9 @@ public class HighScoresDB extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.editText);
         myDB = new DatabaseHelper(this);
         String newEntry = editText.getText().toString();
-        addData(newEntry);
-        addData(Integer.toString(count));
-
+        myDB.addData(newEntry);
+        addData("Hello, World");
+        myDB.getListContents();
 
     }
     public void addData(String newEntry){

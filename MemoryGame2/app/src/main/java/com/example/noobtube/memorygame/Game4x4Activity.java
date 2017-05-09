@@ -98,6 +98,7 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
             if(clickCount == 8){ // if all pairs are found
                 finalCount = finish;
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                saveScore(finalCount);
                 alert.setMessage("You completed the game in" + finish)
                         .setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
                             @Override
@@ -107,6 +108,7 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
                         })
                         .create();
                 alert.show();
+                startActivity(new Intent(this, ViewListContents.class));
             }
             selectedButton1.setMatched(true);
             selectedButton1.setEnabled(false);
@@ -137,6 +139,11 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
     public void onStop() {// when Game activity stops this stops the music
         super.onStop();
         mp.stop();
+    }
+
+    public void saveScore(int score){
+        DatabaseHelper myDB = new DatabaseHelper(this);
+        myDB.addData(String.valueOf(score));
     }
     public int theCount(){
         return finalCount;
