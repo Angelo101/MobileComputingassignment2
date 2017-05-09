@@ -16,13 +16,18 @@ public class MenuActivity extends AppCompatActivity {
     private Context context;
     SettingsActivity settingsActivity;
 //    public MediaPlayer mediaPlayer =null;
+    public static int bg;
 
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        if (bg == 1) {
+            setContentView(R.layout.activity_menu2);
+        } else{
+            setContentView(R.layout.activity_menu);
+    }
         context = this;
         settings = (Button)findViewById(R.id.settings);
         scores = (Button)findViewById(R.id.scores);
@@ -64,20 +69,23 @@ public class MenuActivity extends AppCompatActivity {
 
 
     }
+    public static void changeBackground(){
 
-
-
-    public void music(){
-//        mediaPlayer = MediaPlayer.create(MenuActivity.this, R.raw.thinking);
-        MediaPlayer mediaPlayer = null;
-        if (mediaPlayer == null){
-            mediaPlayer = MediaPlayer.create(MenuActivity.this, R.raw.thinking);
-            mediaPlayer.start();
-        }
-//        else{
-//            mediaPlayer.stop();
-//            mediaPlayer=null;
-//        }
     }
+
+
+
+//    public void music(){
+////        mediaPlayer = MediaPlayer.create(MenuActivity.this, R.raw.thinking);
+//        MediaPlayer mediaPlayer = null;
+//        if (mediaPlayer == null){
+//            mediaPlayer = MediaPlayer.create(MenuActivity.this, R.raw.thinking);
+//            mediaPlayer.start();
+//        }
+////        else{
+////            mediaPlayer.stop();
+////            mediaPlayer=null;
+////        }
+//    }
 
 }

@@ -1,5 +1,7 @@
 package com.example.noobtube.memorygame;
 
+import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,9 +10,9 @@ import android.widget.Button;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    public Button off;
-    public Button on;
-    public MediaPlayer mediaPlayer = null;
+    public Button buttonOrginal;
+    public Button changeBackground;
+    public Context context;
 
 
     @Override
@@ -18,33 +20,24 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        on = (Button) findViewById(R.id.on);
-        off = (Button) findViewById(R.id.off);
-        off.setOnClickListener(new View.OnClickListener() {
+        context = this;
+        changeBackground = (Button) findViewById(R.id.changeBackground);
+        buttonOrginal = (Button) findViewById(R.id.buttonOriginal);
+        changeBackground.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                music();
-
+            public void onClick(View v) { //changing the background image of menu
+                MenuActivity.bg +=1;
+                Intent intent = new Intent(context, MenuActivity.class);
+                startActivity(intent);
             }
         });
-
-        on.setOnClickListener(new View.OnClickListener() {
+        buttonOrginal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                music();
+                MenuActivity.bg = 0;
+                Intent intent = new Intent(context, MenuActivity.class);
+                startActivity(intent);
             }
         });
-
     }
-    public void music(){
-        if (mediaPlayer ==null){
-            mediaPlayer = MediaPlayer.create(SettingsActivity.this, R.raw.thinking);
-            mediaPlayer.start();
-        }
-        else{
-            mediaPlayer.stop();
-            mediaPlayer=null;
-        }
-        }
-
 }
