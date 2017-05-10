@@ -21,7 +21,8 @@
         <activity android:name=".Game4x4Activity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".HighScoresDB" />
-        <activity android:name=".Authenticate"></activity>
+        <activity android:name=".Authenticate" />
+        <activity android:name=".SensorForGame"></activity>
     </application>
 
 </manifest>
