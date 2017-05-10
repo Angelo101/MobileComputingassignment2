@@ -13,7 +13,6 @@ public class HighScoresDB extends AppCompatActivity {
     DatabaseHelper myDB;
     Button add,view;
     EditText editText;
-    int count =10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

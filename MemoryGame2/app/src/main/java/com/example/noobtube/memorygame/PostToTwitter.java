@@ -4,6 +4,8 @@ package com.example.noobtube.memorygame;
  * Created by noobtube on 10/05/2017.
  */
 
+import android.view.View;
+
 import twitter4j.*;
 import twitter4j.auth.AccessToken;
 
@@ -11,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 
+import static android.R.id.input;
 import static android.R.id.message;
 
 /**
@@ -24,6 +27,9 @@ import static android.R.id.message;
 public class PostToTwitter {
 
     public static void postToTwitter() throws IOException, TwitterException {
+        Game4x4Activity game = new Game4x4Activity();
+
+        int postHighScore = game.twitterScore;
 
         //Your Twitter App's Consumer Key
 //        String consumerKey = "kiMjePqMImKXjjrvgWpo649H8";
@@ -51,7 +57,8 @@ public class PostToTwitter {
 
         //Instantiate and initialize a new twitter status update
 
-        StatusUpdate statusUpdate = new StatusUpdate("status");
+        StatusUpdate statusUpdate = new StatusUpdate("I just completed the Memory game in: " + Integer.toString(postHighScore) + "clicks");
+
         twitter.updateStatus(statusUpdate);
     }
 
