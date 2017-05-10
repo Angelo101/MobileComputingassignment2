@@ -28,6 +28,7 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
     public int clickCount = 0;
     public int finish = 0;
     public int finalCount;
+    static int twitterScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +98,10 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
             finish++;
             if(clickCount == 8){ // if all pairs are found
                 finalCount = finish;
+                twitterScore = finalCount;
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                PostToTwitter postToTwitter;
+
                 // Adds score to db
                 saveScore(finalCount);
                 alert.setMessage("You completed the game in" + finish)

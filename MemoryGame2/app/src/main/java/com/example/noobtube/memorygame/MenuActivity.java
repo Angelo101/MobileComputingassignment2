@@ -2,6 +2,7 @@ package com.example.noobtube.memorygame;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -19,7 +20,7 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends  AppCompatActivity {
     private static final int AUTHENTICATE = 1;
     TextView textView;
     Twitter twitter = TwitterFactory.getSingleton();
@@ -43,8 +44,16 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         if (bg == 1) {
             setContentView(R.layout.activity_menu2);
+            if (android.os.Build.VERSION.SDK_INT > 9) {
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+            }
         } else{
             setContentView(R.layout.activity_menu);
+            if (android.os.Build.VERSION.SDK_INT > 9) {
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+            }
     }
         context = this;
         post =(Button)findViewById(R.id.post);
@@ -97,56 +106,5 @@ public class MenuActivity extends AppCompatActivity {
 
             }
         });
-    }
-    public void authorise(View view) {
-        Intent intent = new Intent(this, Authenticate.class);
-        startActivityForResult(intent, AUTHENTICATE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
-
-        if (requestCode == AUTHENTICATE && resultCode == RESULT_OK) {
-            Background.run(new Runnable() {
-                @Override
-                public void run() {
-                    String token = data.getStringExtra("access token");
-                    String secret = data.getStringExtra("access token secret");
-                    AccessToken accessToken = new AccessToken(token, secret);
-                    twitter.setOAuthAccessToken(accessToken);
-
-                    Query query = new Query("@twitterapi");
-                    QueryResult result;
-                    try {
-                        twitter.updateStatus("everything is fine!");
-                        result = twitter.search(query);
-                    } catch (final Exception e) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                textView.setText(e.toString());
-                            }
-                        });
-                        return;
-                    }
-
-                    // convert tweets into text
-                    final StringBuilder builder = new StringBuilder();
-                    for (Status status : result.getTweets()) {
-                        builder.append(status.getUser().getScreenName())
-                                .append(" said ")
-                                .append(status.getText())
-                                .append("\n");
-                    }
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            textView.setText(builder.toString().trim());
-                        }
-                    });
-                }
-            });
-        }
     }
 }
