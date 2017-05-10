@@ -9,10 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
 import twitter4j.Twitter;
+import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
@@ -48,8 +51,16 @@ public class MenuActivity extends AppCompatActivity {
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Authenticate.class);
-                startActivityForResult(intent, AUTHENTICATE);
+                try {
+                    PostToTwitter.postToTwitter();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (TwitterException e) {
+                    e.printStackTrace();
+                }
+//                Intent intent = new Intent(context, Authenticate.class);
+//                startActivityForResult(intent, AUTHENTICATE);
+
             }
         });
         textView = (TextView)findViewById(R.id.text_view);
