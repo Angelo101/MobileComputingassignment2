@@ -16,12 +16,13 @@ import android.hardware.SensorEventListener;
 import android.widget.TextView;
 
 
-public class MainActivity extends Activity implements SensorEventListener{
+public class SensorForGame extends Activity implements SensorEventListener{
 
     private TextView xText, yText, zText;
     private Sensor mySensor;
     private SensorManager SM;
     Context context;
+    public static boolean sensorChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +39,19 @@ public class MainActivity extends Activity implements SensorEventListener{
 
         // Register sensor Listener
         SM.registerListener(this, mySensor, SensorManager.SENSOR_DELAY_NORMAL);
-
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
         if(event.values[0] <= 1){// if X axis  hits 1 or below restart the game
-            Intent intent = new Intent(context.this, Game4x4Activity.class);
-            startActivity(intent);
+            sensorChanged = true;
         }
     }
 
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
