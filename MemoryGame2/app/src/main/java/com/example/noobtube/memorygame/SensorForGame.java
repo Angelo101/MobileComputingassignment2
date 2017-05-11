@@ -45,6 +45,9 @@ public class SensorForGame extends Activity implements SensorEventListener{
     public void onSensorChanged(SensorEvent event) {
         if(event.values[0] <= 1){// if X axis  hits 1 or below restart the game
             sensorChanged = true;
+            Intent intent = new Intent(SensorForGame.this, Game4x4Activity.class);
+            startActivity(intent);
+
         }
     }
 
