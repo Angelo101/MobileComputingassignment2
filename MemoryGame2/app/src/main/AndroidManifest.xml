@@ -23,6 +23,7 @@
         <activity android:name=".HighScoresDB" />
         <activity android:name=".Authenticate" />
         <activity android:name=".SensorForGame" />
+        <activity android:name=".Instructions"></activity>
     </application>
 
 </manifest>
