@@ -2,6 +2,7 @@ package com.example.noobtube.memorygame;
 
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.SensorEventListener;
 import android.os.StrictMode;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +39,7 @@ public class MenuActivity extends  AppCompatActivity {
     SettingsActivity settingsActivity;
 //    public MediaPlayer mediaPlayer =null;
     public static int bg;
+    public static int sensorChanged = 0;
 
 
 
@@ -117,11 +119,6 @@ public class MenuActivity extends  AppCompatActivity {
             }
         });
     }
-    public boolean onTouchEvent(MotionEvent event){
-        this.gestureObject.onTouchEvent(event);
-        return super.onTouchEvent(event);
-    }
-
     class LearnGesture extends GestureDetector.SimpleOnGestureListener{
 
         @Override
