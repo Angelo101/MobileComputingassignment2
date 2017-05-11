@@ -122,17 +122,20 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
 
                 // Adds score to db
                 saveScore(finalCount);
-                alert.setMessage("You completed the game in" + finish)
+                alert.setMessage("You completed the game in " + finish + "clicks!")
                         .setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
+                                Intent intent = new Intent(Game4x4Activity.this, MenuActivity.class);
+                                startActivity(intent);
+
                             }
                         })
                         .create();
                 alert.show();
                 // Open scores page
-                startActivity(new Intent(this, ViewListContents.class));
+//                startActivity(new Intent(this, ViewListContents.class));
             }
             selectedButton1.setMatched(true);
             selectedButton1.setEnabled(false);
