@@ -31,12 +31,6 @@ public class PostToTwitter {
 
         int postHighScore = game.twitterScore;
 
-        //Your Twitter App's Consumer Key
-//        String consumerKey = "kiMjePqMImKXjjrvgWpo649H8";
-//
-//        //Your Twitter App's Consumer Secret
-//        String consumerSecret = "EaJiRXx8LMRZsCvoCAz3pVgkp24NjLYa8GmzGR5IMRrox5wefM";
-
         //Your Twitter Access Token
         String accessToken = "861865585541488640-IDvQwo69f0HvFAwGuv3D7J9oYNzIWkL";
 
@@ -48,9 +42,6 @@ public class PostToTwitter {
 
         //Instantiate a new Twitter instance
         Twitter twitter = twitterFactory.getInstance();
-
-        //setup OAuth Consumer Credentials
-//        twitter.setOAuthConsumer(consumerKey, consumerSecret);
 
         //setup OAuth Access Token
         twitter.setOAuthAccessToken(new AccessToken(accessToken, accessTokenSecret));

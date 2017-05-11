@@ -1,5 +1,6 @@
 package com.example.noobtube.memorygame;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -14,6 +15,7 @@ import android.widget.GridLayout;
 
 import java.util.Random;
 import android.os.Handler;
+import android.widget.Toast;
 
 public class Game4x4Activity extends AppCompatActivity implements SearchView.OnClickListener {
 
@@ -29,6 +31,7 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
     public int finish = 0;
     public int finalCount;
     static int twitterScore;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
         setContentView(R.layout.activity_game4x4);
         mp = MediaPlayer.create(Game4x4Activity.this, R.raw.thinking);
         mp.start();
+
 
         GridLayout gridLayout = (GridLayout) findViewById(R.id.activity_game4x4);
 
