@@ -23,7 +23,6 @@ public class HighScoresDB extends AppCompatActivity {
         myDB = new DatabaseHelper(this);
         String newEntry = editText.getText().toString();
         myDB.addData(newEntry);
-        addData("Hello, World");
         myDB.getListContents();
 
     }

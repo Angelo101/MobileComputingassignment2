@@ -3,9 +3,12 @@ package com.example.noobtube.memorygame;
 import android.content.Context;
 import android.content.Intent;
 import android.os.StrictMode;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,6 +27,7 @@ public class MenuActivity extends  AppCompatActivity {
     private static final int AUTHENTICATE = 1;
     TextView textView;
     Twitter twitter = TwitterFactory.getSingleton();
+    private GestureDetectorCompat gestureObject;
 
 
     private Button play;
@@ -42,6 +46,8 @@ public class MenuActivity extends  AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this;
+
         if (bg == 1) {
             setContentView(R.layout.activity_menu2);
             if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -55,7 +61,8 @@ public class MenuActivity extends  AppCompatActivity {
                 StrictMode.setThreadPolicy(policy);
             }
     }
-        context = this;
+        gestureObject = new GestureDetectorCompat(this, new LearnGesture());
+
         post =(Button)findViewById(R.id.post);
         post.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,5 +113,27 @@ public class MenuActivity extends  AppCompatActivity {
 
             }
         });
+    }
+    public boolean onTouchEvent(MotionEvent event){
+        this.gestureObject.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+
+    class LearnGesture extends GestureDetector.SimpleOnGestureListener{
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
+            if(e2.getX() > e1.getX()){
+                Intent intent = new Intent(context, SettingsActivity.class);
+                startActivity(intent);
+            }else{
+                if(e2.getX() < e1.getX()){
+
+                }
+            }
+
+            return true;
+        }
     }
 }

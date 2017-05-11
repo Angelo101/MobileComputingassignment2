@@ -15,6 +15,7 @@ import android.widget.GridLayout;
 
 import java.util.Random;
 import android.os.Handler;
+import android.widget.Toast;
 
 public class Game4x4Activity extends AppCompatActivity implements SearchView.OnClickListener {
 
@@ -38,11 +39,7 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
         setContentView(R.layout.activity_game4x4);
         mp = MediaPlayer.create(Game4x4Activity.this, R.raw.thinking);
         mp.start();
-         if(SensorForGame.sensorChanged == true){
-             Intent intent = new Intent(context, Game4x4Activity.class);
-             startActivity(intent);
 
-        }
 
         GridLayout gridLayout = (GridLayout) findViewById(R.id.activity_game4x4);
 
