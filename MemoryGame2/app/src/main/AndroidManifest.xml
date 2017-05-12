@@ -22,8 +22,9 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".HighScoresDB" />
         <activity android:name=".Authenticate" />
-        <activity android:name=".SensorForGame" />
-        <activity android:name=".Instructions"></activity>
+        <activity android:name=".Instructions" />
+        <activity android:name=".TwitterMain" />
+        <activity android:name=".ActionBar"></activity>
     </application>
 
 </manifest>

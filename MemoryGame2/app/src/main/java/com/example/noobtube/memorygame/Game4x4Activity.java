@@ -3,21 +3,23 @@ package com.example.noobtube.memorygame;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.media.MediaPlayer;
-import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.GridLayout;
 
 import java.util.Random;
 import android.os.Handler;
 import android.widget.Toast;
 
-public class Game4x4Activity extends AppCompatActivity implements SearchView.OnClickListener {
+public class Game4x4Activity extends AppCompatActivity implements SearchView.OnClickListener, SensorEventListener{
 
     private int numberOfElements;
     private MemoryButton[] buttons;
@@ -32,13 +34,27 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
     public int finalCount;
     static int twitterScore;
     Context context;
+    private Sensor myAccelerometer;
+    private SensorManager SM;
+
+    private long lastUpdate = 0;
+    private float last_x,last_y,last_z;
+    private static final int SHAKE_THRESHOLD = 600;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game4x4);
+        Toast.makeText(this ," TIP: SHAKE DEVICE TO RESTART GAME!", Toast.LENGTH_SHORT).show();
         mp = MediaPlayer.create(Game4x4Activity.this, R.raw.thinking);
         mp.start();
+        SM = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+
+        // Accelerometer Sensor
+        myAccelerometer = SM.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+        // Register sensor Listener
+        SM.registerListener(this, myAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 
 
         GridLayout gridLayout = (GridLayout) findViewById(R.id.activity_game4x4);
@@ -104,21 +120,19 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
                 finalCount = finish;
                 twitterScore = finalCount;
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                PostToTwitter postToTwitter;
-
                 // Adds score to db
                 saveScore(finalCount);
-                alert.setMessage("You completed the game in" + finish)
+                alert.setMessage("You completed the game in " + finish + "clicks!")
                         .setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
+                                Intent intent = new Intent(Game4x4Activity.this, MenuActivity.class);
+                                startActivity(intent);
                             }
                         })
                         .create();
                 alert.show();
-                // Open scores page
-                startActivity(new Intent(this, ViewListContents.class));
             }
             selectedButton1.setMatched(true);
             selectedButton1.setEnabled(false);
@@ -155,8 +169,42 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
         DatabaseHelper myDB = new DatabaseHelper(this);
         myDB.addData(String.valueOf(score));
     }
-    public int theCount(){
-        return finalCount;
+    protected void onPause(){
+        super.onPause();
+        SM.unregisterListener(this);
+    }
+    protected void onResume(){
+        super.onResume();
+        SM.registerListener(this, myAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        Sensor mySensor = sensorEvent.sensor;
+        if(mySensor.getType() == Sensor.TYPE_ACCELEROMETER){
+            float x = sensorEvent.values[0];
+            float y = sensorEvent.values[1];
+            float z = sensorEvent.values[2];
+
+            long curTime = System.currentTimeMillis();
+
+            if((curTime - lastUpdate)>100){
+                long diffTime = (curTime - lastUpdate);
+                lastUpdate = curTime;
+                float speed =Math.abs(x+y+z - last_x -last_y -last_z)/ diffTime *10000;
+
+                if(speed > SHAKE_THRESHOLD){
+                    Intent intent = new Intent(Game4x4Activity.this, Game4x4Activity.class); //when device is shaken it restarts the game
+                    startActivity(intent);
+                }
+                last_x = x;
+                last_y = y;
+                last_z = z;
+            }
+        }
+    }
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
 }
