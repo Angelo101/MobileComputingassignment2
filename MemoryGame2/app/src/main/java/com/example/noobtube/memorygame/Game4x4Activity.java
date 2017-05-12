@@ -17,6 +17,7 @@ import android.widget.GridLayout;
 
 import java.util.Random;
 import android.os.Handler;
+import android.widget.Toast;
 
 public class Game4x4Activity extends AppCompatActivity implements SearchView.OnClickListener, SensorEventListener{
 
@@ -44,6 +45,7 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game4x4);
+        Toast.makeText(this ," TIP: SHAKE DEVICE TO RESTART GAME!", Toast.LENGTH_SHORT).show();
         mp = MediaPlayer.create(Game4x4Activity.this, R.raw.thinking);
         mp.start();
         SM = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
@@ -118,8 +120,6 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
                 finalCount = finish;
                 twitterScore = finalCount;
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                PostToTwitter postToTwitter;
-
                 // Adds score to db
                 saveScore(finalCount);
                 alert.setMessage("You completed the game in " + finish + "clicks!")
@@ -129,13 +129,10 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
                                 dialog.dismiss();
                                 Intent intent = new Intent(Game4x4Activity.this, MenuActivity.class);
                                 startActivity(intent);
-
                             }
                         })
                         .create();
                 alert.show();
-                // Open scores page
-//                startActivity(new Intent(this, ViewListContents.class));
             }
             selectedButton1.setMatched(true);
             selectedButton1.setEnabled(false);
@@ -197,20 +194,15 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
                 float speed =Math.abs(x+y+z - last_x -last_y -last_z)/ diffTime *10000;
 
                 if(speed > SHAKE_THRESHOLD){
-                    Intent intent = new Intent(Game4x4Activity.this, Game4x4Activity.class);
+                    Intent intent = new Intent(Game4x4Activity.this, Game4x4Activity.class); //when device is shaken it restarts the game
                     startActivity(intent);
-
                 }
                 last_x = x;
                 last_y = y;
                 last_z = z;
             }
-
         }
-
-
     }
-
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 

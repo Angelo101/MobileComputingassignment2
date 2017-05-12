@@ -27,9 +27,9 @@ import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
 public class MenuActivity extends  AppCompatActivity {
-    private static final int AUTHENTICATE = 1;
+//    private static final int AUTHENTICATE = 1;
     TextView textView, swipeLeft;
-    Twitter twitter = TwitterFactory.getSingleton();
+//    Twitter twitter = TwitterFactory.getSingleton();
     public GestureDetectorCompat gestureObject;
 
 
@@ -66,6 +66,10 @@ public class MenuActivity extends  AppCompatActivity {
             }
         }
 
+
+//        textView = (TextView) findViewById(R.id.text_view);
+//        textView.setMovementMethod(new ScrollingMovementMethod());
+
         swipeLeft = (TextView) findViewById(R.id.swipeLeft);
         swipeLeft.setText("PLANET MEMORY GAME!\n" +
                 "\nSWIPE LEFT TO VIEW GAME INSTRUCTIONS");
@@ -75,15 +79,8 @@ public class MenuActivity extends  AppCompatActivity {
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    PostToTwitter.postToTwitter();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (TwitterException e) {
-                    e.printStackTrace();
-                }
-//                Intent intent = new Intent(context, Authenticate.class);
-//                startActivityForResult(intent, AUTHENTICATE);
+                Intent intent = new Intent(context, TwitterMain.class);
+                startActivity(intent);
 
             }
         });

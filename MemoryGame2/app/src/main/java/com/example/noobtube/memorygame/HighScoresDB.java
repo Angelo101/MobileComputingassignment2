@@ -11,7 +11,6 @@ import android.widget.Toast;
 public class HighScoresDB extends AppCompatActivity {
 
     DatabaseHelper myDB;
-    Button add,view;
     EditText editText;
 
     @Override
