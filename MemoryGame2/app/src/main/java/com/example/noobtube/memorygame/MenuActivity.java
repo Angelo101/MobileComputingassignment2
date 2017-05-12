@@ -52,6 +52,7 @@ public class MenuActivity extends  AppCompatActivity {
         super.onCreate(savedInstanceState);
         context = this;
 
+
         if (bg == 1) {
             setContentView(R.layout.activity_menu2);
             if (android.os.Build.VERSION.SDK_INT > 9) {
