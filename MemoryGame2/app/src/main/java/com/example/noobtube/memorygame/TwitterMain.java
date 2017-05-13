@@ -15,7 +15,7 @@ import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
-public class TwitterMain extends AppCompatActivity {
+public class TwitterMain extends ActionBar {
     Game4x4Activity game = new Game4x4Activity();
     int postHighScore = game.twitterScore;
     Button menu;
@@ -45,6 +45,7 @@ public class TwitterMain extends AppCompatActivity {
         Intent intent = new Intent(this, Authenticate.class);
         startActivityForResult(intent, AUTHENTICATE);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, final Intent data) {

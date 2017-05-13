@@ -58,6 +58,7 @@ public class MenuActivity extends  ActionBar {
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 mp.start();
                 Intent intent = new Intent(context, TwitterMain.class);
                 startActivity(intent);
