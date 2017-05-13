@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.SensorEventListener;
+import android.media.MediaPlayer;
 import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +28,7 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
-public class MenuActivity extends  AppCompatActivity {
+public class MenuActivity extends  ActionBar {
 //    private static final int AUTHENTICATE = 1;
     TextView textView, swipeLeft;
 //    Twitter twitter = TwitterFactory.getSingleton();
@@ -42,6 +44,7 @@ public class MenuActivity extends  AppCompatActivity {
 //    public MediaPlayer mediaPlayer =null;
     public static int bg;
     public static int sensorChanged = 0;
+
 
 
 
@@ -70,6 +73,10 @@ public class MenuActivity extends  AppCompatActivity {
 
 //        textView = (TextView) findViewById(R.id.text_view);
 //        textView.setMovementMethod(new ScrollingMovementMethod());
+        final MediaPlayer mp; // this is for everyhting but play game
+        mp = MediaPlayer.create(this, R.raw.power);
+        final MediaPlayer soundEffect;
+        soundEffect = MediaPlayer.create(this,R.raw.timewarp);
 
         swipeLeft = (TextView) findViewById(R.id.swipeLeft);
         swipeLeft.setText("PLANET MEMORY GAME!\n" +
@@ -80,6 +87,7 @@ public class MenuActivity extends  AppCompatActivity {
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp.start();
                 Intent intent = new Intent(context, TwitterMain.class);
                 startActivity(intent);
 
@@ -93,6 +101,7 @@ public class MenuActivity extends  AppCompatActivity {
         scores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp.start();
                 Intent intent = new Intent(context, ViewListContents.class);
                 startActivity(intent);
             }
@@ -101,6 +110,7 @@ public class MenuActivity extends  AppCompatActivity {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp.start();
                 Intent intent = new Intent(context, SettingsActivity.class);
                 startActivity(intent);
             }
@@ -113,6 +123,7 @@ public class MenuActivity extends  AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                soundEffect.start();
                 Intent intent = new Intent(MenuActivity.this, Game4x4Activity.class);
                 startActivity(intent);
 

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Created by noobtube on 9/05/2017.
  */
 
-public class ViewListContents extends AppCompatActivity {
+public class ViewListContents extends ActionBar {
     DatabaseHelper myDB;
 
 

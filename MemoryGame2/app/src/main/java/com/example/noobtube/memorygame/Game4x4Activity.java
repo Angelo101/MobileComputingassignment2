@@ -13,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.GridLayout;
 
 import java.util.Random;
@@ -43,6 +45,7 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game4x4);
         Toast.makeText(this ," TIP: SHAKE DEVICE TO RESTART GAME!", Toast.LENGTH_SHORT).show();
