@@ -3,13 +3,10 @@ package com.example.noobtube.memorygame;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.hardware.SensorEventListener;
 import android.media.MediaPlayer;
 import android.os.StrictMode;
-import android.provider.MediaStore;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.GestureDetector;
@@ -18,44 +15,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.IOException;
-
-import twitter4j.Query;
-import twitter4j.QueryResult;
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
-import twitter4j.auth.AccessToken;
-
 public class MenuActivity extends  ActionBar {
-//    private static final int AUTHENTICATE = 1;
     TextView textView, swipeLeft;
-//    Twitter twitter = TwitterFactory.getSingleton();
     public GestureDetectorCompat gestureObject;
-
-
     private Button play;
     private Button settings;
     private Button scores;
     private Button post;
     private Context context;
-    SettingsActivity settingsActivity;
-//    public MediaPlayer mediaPlayer =null;
-    public static int bg;
-    public static int sensorChanged = 0;
-
-
-
-
-
+    public static int backgroundCount;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
 
-        if (bg == 1) {
+        if (backgroundCount == 1) { //changing the background if count == 1
             setContentView(R.layout.activity_menu2);
             if (android.os.Build.VERSION.SDK_INT > 9) {
                 StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -113,8 +88,6 @@ public class MenuActivity extends  ActionBar {
 
         play = (Button) findViewById(R.id.button_4x4_game);
         play.setText("PLAY");
-
-
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

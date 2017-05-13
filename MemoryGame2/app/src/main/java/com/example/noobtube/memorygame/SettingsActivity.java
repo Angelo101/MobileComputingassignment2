@@ -2,8 +2,6 @@ package com.example.noobtube.memorygame;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +24,7 @@ public class SettingsActivity extends ActionBar {
         changeBackground.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { //changing the background image of menu
-                MenuActivity.bg +=1;
+                MenuActivity.backgroundCount +=1;
                 Intent intent = new Intent(context, MenuActivity.class);
                 startActivity(intent);
             }
@@ -34,7 +32,7 @@ public class SettingsActivity extends ActionBar {
         buttonOrginal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {// changing the background back
-                MenuActivity.bg = 0;
+                MenuActivity.backgroundCount = 0;
                 Intent intent = new Intent(context, MenuActivity.class);
                 startActivity(intent);
             }
