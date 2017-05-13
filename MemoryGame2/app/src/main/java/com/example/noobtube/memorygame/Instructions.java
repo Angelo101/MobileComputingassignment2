@@ -8,15 +8,11 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class Instructions extends AppCompatActivity {
-
+// this class will bring an alert message
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
-        TextView instructions = (TextView) findViewById(R.id.instructions);
-//        instructions.setText("How to Play:\n Tap on the icons and find all the pairs! \n \n" +
-//                "after 2 icons are selected you have 0.2ms to \nmemorize what the icons were before they " +
-//                "flip back over!");
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setMessage("How to Play: Tap on the icons and find all the pairs! "+
                 "                \"after 2 icons are selected you have 0.2ms to memorize what the icons were before they \" " +

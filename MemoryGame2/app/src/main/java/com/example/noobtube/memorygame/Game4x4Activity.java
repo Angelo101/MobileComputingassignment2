@@ -13,10 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.GridLayout;
-
 import java.util.Random;
 import android.os.Handler;
 import android.widget.Toast;
@@ -31,11 +28,10 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
     private boolean isBusy = false; //this is so we don't crash the app so  users cannot spam click all the buttons
     private MemoryButton selectedButton2;
     public MediaPlayer mp;
-    public int clickCount = 0;
-    public int finish = 0;
+    public int pairsFound = 0;
+    public int incrementClicks = 0;
     public int finalCount;
     static int twitterScore;
-    Context context;
     private Sensor myAccelerometer;
     private SensorManager SM;
 
@@ -111,21 +107,21 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
         if(selectedButton1 == null){
             selectedButton1 = button;
             selectedButton1.flip();
-            finish++;
+            incrementClicks++;
             return;
         }
         if(selectedButton1.getFrontDrawableId() == button.getFrontDrawableId()){
             button.flip();
             button.setMatched(true);
-            clickCount++;
-            finish++;
-            if(clickCount == 8){ // if all pairs are found
-                finalCount = finish;
+            pairsFound++;
+            incrementClicks++;
+            if(pairsFound == 8){ // if all pairs are found
+                finalCount = incrementClicks;
                 twitterScore = finalCount;
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 // Adds score to db
                 saveScore(finalCount);
-                alert.setMessage("You completed the game in " + finish + "clicks!")
+                alert.setMessage("You completed the game in " + incrementClicks + "clicks!")
                         .setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -146,7 +142,7 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
          else{
             selectedButton2 = button;
             selectedButton2.flip();
-            finish++;
+            incrementClicks++;
             isBusy = true;
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -157,10 +153,8 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
                     selectedButton1 = null;
                     selectedButton2 = null;
                     isBusy = false;
-
                 }
             }, 200);// very short delay to make it harder.
-
         }
     }
     public void onStop() {// when Game activity stops this stops the music

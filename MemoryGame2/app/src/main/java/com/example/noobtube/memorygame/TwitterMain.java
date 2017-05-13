@@ -17,10 +17,8 @@ import twitter4j.auth.AccessToken;
 
 public class TwitterMain extends AppCompatActivity {
     Game4x4Activity game = new Game4x4Activity();
-
     int postHighScore = game.twitterScore;
     Button menu;
-
     private static final int AUTHENTICATE = 1;
     TextView textView;
     Twitter twitter = TwitterFactory.getSingleton();
@@ -31,7 +29,6 @@ public class TwitterMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_twitter_main);
         context = this;
-
         textView = (TextView) findViewById(R.id.text_view);
         textView.setMovementMethod(new ScrollingMovementMethod());
         menu = (Button)findViewById(R.id.menu);
@@ -40,7 +37,6 @@ public class TwitterMain extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(context, MenuActivity.class);
                 startActivity(intent);
-
             }
         });
     }
@@ -64,7 +60,7 @@ public class TwitterMain extends AppCompatActivity {
                     Query query = new Query("@twitterapi");
                     QueryResult result;
                     try {
-                        twitter.updateStatus("I just completed the Memory game in: " + Integer.toString(postHighScore) + "clicks");
+                        twitter.updateStatus("I just completed the Memory game in: " + Integer.toString(postHighScore) + "clicks");//posting the most recent score to twitter
                         result = twitter.search(query);
                     } catch (final Exception e) {
                         runOnUiThread(new Runnable() {

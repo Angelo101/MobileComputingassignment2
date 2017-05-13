@@ -21,7 +21,6 @@ public class MemoryButton extends Button {
     protected Drawable front;
     protected Drawable back;
     public int count = 0;
-//    AlertMessage alertMessage;
 
     public MemoryButton(Context context, int r, int c, int frontImageDrawableId)
     {

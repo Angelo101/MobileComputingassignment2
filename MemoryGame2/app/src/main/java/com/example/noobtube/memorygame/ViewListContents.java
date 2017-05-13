@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class ViewListContents extends ActionBar {
     DatabaseHelper myDB;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,15 +26,14 @@ public class ViewListContents extends ActionBar {
         myDB = new DatabaseHelper(this);
         ArrayList<String> theList = new ArrayList<>();
         Cursor data = myDB.getListContents();
-        if(data.getCount() == 0){
+        if(data.getCount() == 0){// if user has not played the game yet
             Toast.makeText(this ,"No recorded scores yet!", Toast.LENGTH_SHORT).show();
-        }else{
+        }else{//all the users scores are displayed
             while(data.moveToNext()){
                 theList.add(data.getString(1));
             }
             ListAdapter listAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, theList);
             listView.setAdapter(listAdapter);
         }
-
     }
 }

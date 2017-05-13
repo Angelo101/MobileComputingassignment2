@@ -36,9 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, item1);
-
         long result = db.insert(TABLE_NAME, null, contentValues);
-
         //if inserted incorrectly it will return -1
         if (result == -1) {
             return false;
@@ -50,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 //        db.delete(TABLE_NAME, "ITEM1 = 10", null);
-//        db.delete(TABLE_NAME, "ITEM1 = ''", null);
+//        db.delete(TABLE_NAME, "ITEM1 = ''", null);            // this is to wipe the highscores
 //        db.delete(TABLE_NAME, "ITEM1 = 'Hello, World'", null);
         return data;
     }

@@ -33,7 +33,7 @@ public class SettingsActivity extends ActionBar {
         });
         buttonOrginal.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {// changing the background back
                 MenuActivity.bg = 0;
                 Intent intent = new Intent(context, MenuActivity.class);
                 startActivity(intent);

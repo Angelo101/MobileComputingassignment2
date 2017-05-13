@@ -55,7 +55,6 @@ public class MenuActivity extends  ActionBar {
         super.onCreate(savedInstanceState);
         context = this;
 
-
         if (bg == 1) {
             setContentView(R.layout.activity_menu2);
             if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -70,12 +69,9 @@ public class MenuActivity extends  ActionBar {
             }
         }
 
-
-//        textView = (TextView) findViewById(R.id.text_view);
-//        textView.setMovementMethod(new ScrollingMovementMethod());
         final MediaPlayer mp; // this is for everyhting but play game
         mp = MediaPlayer.create(this, R.raw.power);
-        final MediaPlayer soundEffect;
+        final MediaPlayer soundEffect; // playgame sound effect for button
         soundEffect = MediaPlayer.create(this,R.raw.timewarp);
 
         swipeLeft = (TextView) findViewById(R.id.swipeLeft);
@@ -90,14 +86,13 @@ public class MenuActivity extends  ActionBar {
                 mp.start();
                 Intent intent = new Intent(context, TwitterMain.class);
                 startActivity(intent);
-
             }
         });
+
         textView = (TextView) findViewById(R.id.text_view);
         textView.setMovementMethod(new ScrollingMovementMethod());
         settings = (Button) findViewById(R.id.settings);
         scores = (Button) findViewById(R.id.scores);
-
         scores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,8 +121,6 @@ public class MenuActivity extends  ActionBar {
                 soundEffect.start();
                 Intent intent = new Intent(MenuActivity.this, Game4x4Activity.class);
                 startActivity(intent);
-
-
             }
         });
     }
@@ -136,11 +129,10 @@ public class MenuActivity extends  ActionBar {
             return super.onTouchEvent(event);
         }
 
-    class LearnGesture extends GestureDetector.SimpleOnGestureListener{
+    class LearnGesture extends GestureDetector.SimpleOnGestureListener{ // creating gestures
 
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-
-
+            // swipe left to right
             if(e2.getX() > e1.getX()){
                 AlertDialog.Builder alert = new AlertDialog.Builder(context);
                 alert.setMessage("How to Play: Tap on the icons and find all the pairs!\n "+
@@ -156,11 +148,10 @@ public class MenuActivity extends  ActionBar {
                         .create();
                 alert.show();
             }else{
+                //swipe right to left
                 if(e2.getX() < e1.getX()){
-
                 }
             }
-
             return true;
         }
     }

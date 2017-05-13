@@ -27,7 +27,7 @@ public class Authenticate extends AppCompatActivity {
             @Override
             public void onLoadResource(WebView view, String url) {
                 System.out.println(url + " : HERE");
-                if (url.startsWith("http://www.mobiletech-placeholder.com/")) {
+                if (url.startsWith("http://www.mobiletech-placeholder.com/")) {// fake website to return user to the app
                     Uri uri = Uri.parse(url);
                     final String oauthVerifier = uri.getQueryParameter("oauth_verifier");
                     if (oauthVerifier != null) {
@@ -55,7 +55,6 @@ public class Authenticate extends AppCompatActivity {
                 super.onLoadResource(view, url);
             }
         });
-
 
         Background.run(new Runnable() {
             @Override

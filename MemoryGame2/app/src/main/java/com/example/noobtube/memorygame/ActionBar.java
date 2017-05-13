@@ -1,15 +1,11 @@
 package com.example.noobtube.memorygame;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 public class ActionBar extends AppCompatActivity {
 
@@ -17,8 +13,6 @@ public class ActionBar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_action_bar);
-
-
     }
 
     @Override
@@ -29,7 +23,7 @@ public class ActionBar extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) { // populating the dropdown of the actionbar
 
         switch ((item.getItemId())){
             case R.id.settings:
@@ -50,8 +44,6 @@ public class ActionBar extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
 }
 
