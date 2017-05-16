@@ -1,28 +1,26 @@
 package com.example.noobtube.memorygame;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class HighScoresDB extends AppCompatActivity {
 
     DatabaseHelper myDB;
-    EditText editText;
+    EditText scoreField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_scores_db);
 
-        editText = (EditText) findViewById(R.id.editText);
+
+        scoreField = (EditText) findViewById(R.id.scoreField);
         myDB = new DatabaseHelper(this);
-        String newEntry = editText.getText().toString();
+        String newEntry = scoreField.getText().toString();
         myDB.addData(newEntry);
         myDB.getListContents();
+        System.out.println(newEntry + "Testing");
 
     }
     public void addData(String newEntry){

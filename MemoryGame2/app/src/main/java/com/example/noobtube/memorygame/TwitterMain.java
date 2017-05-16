@@ -70,24 +70,29 @@ public class TwitterMain extends ActionBar {
                                 textView.setText(e.toString());
                             }
                         });
+
+
                         return;
                     }
+                    Intent menuIntent = new Intent(context, MenuActivity.class);
+                    startActivity(menuIntent);
+
 
                     // convert tweets into text
-                    final StringBuilder builder = new StringBuilder();
-                    for (Status status : result.getTweets()) {
-                        builder.append(status.getUser().getScreenName())
-                                .append(" said ")
-                                .append(status.getText())
-                                .append("\n");
-                    }
+//                    final StringBuilder builder = new StringBuilder();
+//                    for (Status status : result.getTweets()) {
+//                        builder.append(status.getUser().getScreenName())
+//                                .append(" said ")
+//                                .append(status.getText())
+//                                .append("\n");
+//                    }
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            textView.setText(builder.toString().trim());
-                        }
-                    });
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            textView.setText(builder.toString().trim());
+//                        }
+//                    });
                 }
             });
         }

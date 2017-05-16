@@ -22,7 +22,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/scoreField"
         android:layout_below="@+id/btnAdd"
         android:layout_alignParentStart="true"
         android:layout_marginTop="23dp" />

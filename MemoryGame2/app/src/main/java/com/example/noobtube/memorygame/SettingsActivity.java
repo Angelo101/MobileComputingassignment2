@@ -24,7 +24,7 @@ public class SettingsActivity extends ActionBar {
         changeBackground.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { //changing the background image of menu
-                MenuActivity.backgroundCount +=1;
+                MenuActivity.backgroundCount = 1;
                 Intent intent = new Intent(context, MenuActivity.class);
                 startActivity(intent);
             }

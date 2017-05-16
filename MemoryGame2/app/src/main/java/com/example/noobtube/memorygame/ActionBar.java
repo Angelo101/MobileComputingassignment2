@@ -29,18 +29,22 @@ public class ActionBar extends AppCompatActivity {
             case R.id.settings:
                 Intent intent = new Intent(ActionBar.this, SettingsActivity.class);
                 startActivity(intent);
+                this.finish();
                 return true;
             case R.id.scores:
                 Intent intentScores = new Intent(ActionBar.this, ViewListContents.class);
                 startActivity(intentScores);
+                this.finish();
                 return true;
             case R.id.playgame:
                 Intent intentPlay = new Intent(ActionBar.this, Game4x4Activity.class);
                 startActivity(intentPlay);
+                this.finish();
                 return true;
             case R.id.menu:
                 Intent intentMenu = new Intent(ActionBar.this, MenuActivity.class);
                 startActivity(intentMenu);
+                this.finish();
             default:
                 return super.onOptionsItemSelected(item);
         }

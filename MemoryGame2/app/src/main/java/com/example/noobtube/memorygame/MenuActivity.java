@@ -51,7 +51,7 @@ public class MenuActivity extends  ActionBar {
 
         swipeLeft = (TextView) findViewById(R.id.swipeLeft);
         swipeLeft.setText("PLANET MEMORY GAME!\n" +
-                "\nSWIPE LEFT TO VIEW GAME INSTRUCTIONS");
+                "\nSWIPE FROM LEFT TO RIGHT TO VIEW THE GAME INSTRUCTIONS");
         gestureObject = new GestureDetectorCompat(this, new LearnGesture());
 
         post = (Button) findViewById(R.id.post);
@@ -95,6 +95,7 @@ public class MenuActivity extends  ActionBar {
                 soundEffect.start();
                 Intent intent = new Intent(MenuActivity.this, Game4x4Activity.class);
                 startActivity(intent);
+
             }
         });
     }

@@ -27,7 +27,7 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
     private MemoryButton selectedButton1;
     private boolean isBusy = false; //this is so we don't crash the app so  users cannot spam click all the buttons
     private MemoryButton selectedButton2;
-    public MediaPlayer mp;
+    public MediaPlayer mediaPlayer;
     public int pairsFound = 0;
     public int incrementClicks = 0;
     public int finalCount;
@@ -45,8 +45,8 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game4x4);
         Toast.makeText(this ," TIP: SHAKE DEVICE TO RESTART GAME!", Toast.LENGTH_SHORT).show();
-        mp = MediaPlayer.create(Game4x4Activity.this, R.raw.thinking);
-        mp.start();
+        mediaPlayer = MediaPlayer.create(Game4x4Activity.this, R.raw.thinking);
+        mediaPlayer.start();
         SM = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
 
         // Accelerometer Sensor
@@ -99,9 +99,9 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
         if(isBusy) return;
-        MemoryButton button = (MemoryButton) v;
+        MemoryButton button = (MemoryButton) view;
         if(button.isMatched)
             return;
         if(selectedButton1 == null){
@@ -159,7 +159,7 @@ public class Game4x4Activity extends AppCompatActivity implements SearchView.OnC
     }
     public void onStop() {// when Game activity stops this stops the music
         super.onStop();
-        mp.stop();
+        mediaPlayer.stop();
     }
 
     public void saveScore(int score){
